@@ -1,0 +1,20 @@
+{
+  "name": "zipcoder",
+  "version": "0.0.0",
+  "description": "Get zipcode for user location",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schickling/zipcoder.git"
+  },
+  "keywords": [
+    "zipcode",
+    "location",
+    "gmaps"
+  ],
+  "author": "Johannes Schickling <schickling.j@gmail.com> (https://github.com/schickling)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schickling/zipcoder/issues"
+  },
+  "homepage": "https://github.com/schickling/zipcoder"
+}
