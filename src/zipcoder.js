@@ -15,28 +15,79 @@
   }
 })('zipcoder', function() {
 
+  function httpGet(url, callback) {
+
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        data = JSON.parse(request.responseText);
+        callback(data);
+      } else {
+        console.log('Error in response of ', url);
+        callback(null);
+      }
+    };
+
+    request.onerror = function() {
+      console.log('Error while requesting ', url);
+      callback(null);
+    };
+
+    request.send();
+  }
+
+  var GoogleMapsProvider = {
+
+    query: function(lat, lng, callback) {
+
+      var self = this;
+      var url = '//maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=false';
+
+      httpGet(url, function(data) {
+
+        if (data.status !== 'OK') {
+          callback(null);
+          return;
+        }
+
+        var addressComponents = data.results[0]['address_components'];
+        var zipcode = self._parseElement(addressComponents, 'postal_code');
+        var city = self._parseElement(addressComponents, 'locality') || self._parseElement(addressComponents, 'postal_town');
+        var country = self._parseElement(addressComponents, 'country');
+
+        var result = {
+          lat: lat,
+          lng: lng,
+          zipcode: zipcode,
+          city: city,
+          country: country,
+        };
+        callback(result);
+      });
+    },
+
+    _parseElement: function(addressComponents, element) {
+      for (var i = 0; i < addressComponents.length; i++) {
+        if (addressComponents[i]['types'].indexOf(element) !== -1) {
+          return addressComponents[i]['long_name'];
+        }
+      }
+    },
+
+  };
+
   return {
 
-    _result: null,
-
-    _calc: function(lat, lng) {
-      this._result = {
-        lat: 52.519444,
-        lng: 13.406667,
-        zipcode: '10117',
-        city: 'Berlin',
-        country: 'Germany',
-      };
-    },
+    _provider: GoogleMapsProvider,
 
     coordinates: function(lat, lng, callback) {
-      this._calc(lat, lng);
-      callback(this._result);
+      this._provider.query(lat, lng, callback);
     },
 
-    location: function() {
-      this.coordinates(52.519444, 13.406667);
-      callback(this._result);
+    location: function(callback) {
+      this.coordinates(52.519444, 13.406667, callback);
     },
 
   };
