@@ -29,14 +29,14 @@
       };
     },
 
-    coordinates: function(lat, lng) {
+    coordinates: function(lat, lng, callback) {
       this._calc(lat, lng);
-      return this._result;
+      callback(this._result);
     },
 
     location: function() {
       this.coordinates(52.519444, 13.406667);
-      return this._result;
+      callback(this._result);
     },
 
   };

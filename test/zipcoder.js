@@ -2,7 +2,7 @@ describe('zipcoder', function() {
 
 	describe('coordinates', function() {
 
-		it('should return a valid result', function() {
+		it('should return a valid result', function(done) {
 			var expectedResult = {
 				lat: 52.519444,
 				lng: 13.406667,
@@ -10,7 +10,10 @@ describe('zipcoder', function() {
 				city: 'Berlin',
 				country: 'Germany',
 			};
-			expect(zipcoder.coordinates(52.519444, 13.406667)).toEqual(expectedResult);
+			zipcoder.coordinates(52.519444, 13.406667, function(result) {
+				expect(result).toEqual(expectedResult);
+				done();
+			});
 		});
 
 	});
