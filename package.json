@@ -12,7 +12,7 @@
     "gmaps"
   ],
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "node_modules/karma/bin/karma start --single-run"
   },
   "author": "Johannes Schickling <schickling.j@gmail.com> (https://github.com/schickling)",
   "license": "MIT",
