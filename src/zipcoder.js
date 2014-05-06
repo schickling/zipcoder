@@ -87,7 +87,15 @@
     },
 
     location: function(callback) {
-      this.coordinates(52.519444, 13.406667, callback);
+
+      var self = this;
+
+      navigator.geolocation.getCurrentPosition(function(location) {
+        var lat = location.coords.latitude;
+        var lng = location.coords.longitude;
+        self.coordinates(lat, lng, callback);
+      });
+
     },
 
   };
