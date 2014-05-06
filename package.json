@@ -11,10 +11,19 @@
     "location",
     "gmaps"
   ],
+  "scripts": {
+    "test": "karma start --single-run"
+  },
   "author": "Johannes Schickling <schickling.j@gmail.com> (https://github.com/schickling)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/schickling/zipcoder/issues"
   },
-  "homepage": "https://github.com/schickling/zipcoder"
+  "homepage": "https://github.com/schickling/zipcoder",
+  "devDependencies": {
+    "karma": "^0.12.14",
+    "karma-jasmine": "^0.2.2",
+    "phantomjs": "^1.9.7-5",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
 }
