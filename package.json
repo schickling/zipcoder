@@ -1,6 +1,6 @@
 {
   "name": "zipcoder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Get zipcode for user location",
   "main": "src/zipcoder.js",
   "repository": {
