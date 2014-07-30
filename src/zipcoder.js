@@ -94,6 +94,8 @@
         var lat = location.coords.latitude;
         var lng = location.coords.longitude;
         self.coordinates(lat, lng, callback);
+      }, function() {
+        callback(null);
       });
 
     },
