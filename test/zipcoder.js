@@ -16,12 +16,12 @@ describe('zipcoder', function() {
 			});
 		});
 
-		it('should callback with a valid result for Ramsjö, Sweden', function(done) {
+		it('should callback with a valid result for Gassjö, Sweden', function(done) {
 			var expectedResult = {
 				lat: 62.119444,
 				lng: 15.406667,
 				zipcode: '82046',
-				city: 'Ramsjö',
+				city: 'Gassjö',
 				country: 'Sweden',
 			};
 			zipcoder.coordinates(62.119444, 15.406667, function(result) {
